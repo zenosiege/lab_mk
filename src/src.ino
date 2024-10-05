@@ -4,12 +4,12 @@ constexpr unsigned int PERIOD{2};
 constexpr unsigned int HALF_PERIOD{PERIOD / 2};
 
 void setup() {
-    builtin_led_init();
+    Builtin_led::init();
 }
 
 void loop() {
-    builtin_led_on();
+    Builtin_led::on();
     delay_s(HALF_PERIOD);
-    builtin_led_off();
+    Builtin_led::off();
     delay_s(HALF_PERIOD);
 }
