@@ -1,4 +1,15 @@
-builtin_led_init();
-builtin_led_on();
-builtin_led_off();
-delay_s();
+void builtin_led_init() {
+
+}
+
+void builtin_led_on() {
+
+}
+
+void builtin_led_off() {
+
+}
+
+void delay_s() {
+
+}
