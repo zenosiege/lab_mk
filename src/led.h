@@ -1,13 +1,17 @@
-void builtin_led_init() {
+namespace Builtin_led {
+
+void init() {
     pinMode(LED_BUILTIN, OUTPUT);
 }
 
-void builtin_led_on() {
+void on() {
     digitalWrite(LED_BUILTIN, HIGH);  
 }
 
-void builtin_led_off() {
+void off() {
     digitalWrite(LED_BUILTIN, LOW); 
+}
+
 }
 
 void delay_s(unsigned int s) {
