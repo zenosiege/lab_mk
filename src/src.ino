@@ -3,13 +3,18 @@
 constexpr unsigned int PERIOD{2};
 constexpr unsigned int HALF_PERIOD{PERIOD / 2};
 
+LED builtin_led(13);
+
 void setup() {
-    Builtin_led::init();
+    builtin_led.init();
+    Serial.begin(115200);
 }
 
 void loop() {
-    Builtin_led::on();
+    builtin_led.on();
     delay_s(HALF_PERIOD);
-    Builtin_led::off();
+    builtin_led.off();
     delay_s(HALF_PERIOD);
+    
+    Serial.print(":3 ");
 }
