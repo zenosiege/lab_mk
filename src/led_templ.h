@@ -25,6 +25,12 @@ class RGB_LED {
 
         static void redLightOff() { digitalWrite(rpin, HIGH); digitalWrite(gpin, LOW); digitalWrite(bpin, LOW);}
 
+        static void analogColor(unsigned int rVal, unsigned int gVal, unsigned int bVal) {
+            analogWrite(rpin, rVal); 
+            analogWrite(gpin, gVal); 
+            analogWrite(bpin, bVal);
+        }
+
         static void clrRGB(char color) {
             switch (color) {
                 case 'r':
