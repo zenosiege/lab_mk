@@ -58,6 +58,49 @@ class RGB_LED {
                     break;
             }
         }
+
+        static void staticRGBlight (double s){
+            unsigned int r = 255;
+            unsigned int g = 0;
+            unsigned int b = 0;
+            analogColor(r, g, b);
+
+            while(b != 255) {
+                b += 1;
+                analogColor(r, g, b);
+                delay(s * 1000);
+            }
+
+            while(r != 0) {
+                r -= 1;
+                analogColor(r, g, b);
+                delay(s * 1000);
+            }
+
+            while(g != 255) {
+                g += 1;
+                analogColor(r, g, b);
+                delay(s * 1000);
+            }
+
+            while(b != 0) {
+                b -= 1;
+                analogColor(r, g, b);
+                delay(s * 1000);
+            }
+
+            while(r != 255) {
+                r += 1;
+                analogColor(r, g, b);
+                delay(s * 1000);
+            }
+
+            while(g != 0) {
+                r -= 1;
+                analogColor(r, g, b);
+                delay(s * 1000);
+            }
+        }
         /*
         static void clrRGBoff(char color) {
             switch (color) {

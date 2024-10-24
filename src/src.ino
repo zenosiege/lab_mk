@@ -31,48 +31,8 @@ void loop() {
    //сделать переливание цветов, опираясь на ргб-палитру
     Builtin_LED::on();
     RGBT::on();
-    //красная зона
-    unsigned int r = 255;
-    unsigned int g = 0;
-    unsigned int b = 0;
-    RGBT::analogColor(r, g, b);
 
-    while(b != 255) {
-        b += 1;
-        RGBT::analogColor(r, g, b);
-        delay(150);
-    }
-
-    while(r != 0) {
-        r -= 1;
-        RGBT::analogColor(r, g, b);
-        delay(150);
-    }
-
-    while(g != 255) {
-        g += 1;
-        RGBT::analogColor(r, g, b);
-        delay(150);
-    }
-
-    while(b != 0) {
-        b -= 1;
-        RGBT::analogColor(r, g, b);
-        delay(150);
-    }
-
-    while(r != 255) {
-        r += 1;
-        RGBT::analogColor(r, g, b);
-        delay(150);
-    }
-
-    while(g != 0) {
-        r -= 1;
-        RGBT::analogColor(r, g, b);
-        delay(150);
-    }
-    //конец красной зоны
+    RGBT::staticRGBlight(0.150);
     
     delay(150);
     Serial.print(":3 ");
