@@ -63,42 +63,45 @@ class RGB_LED {
             unsigned int r = 255;
             unsigned int g = 0;
             unsigned int b = 0;
+
+            unsigned int sec = s * 1000;
+
             analogColor(r, g, b);
 
             while(b != 255) {
                 b += 1;
                 analogColor(r, g, b);
-                delay(s * 1000);
+                delay(sec);
             }
 
             while(r != 0) {
                 r -= 1;
                 analogColor(r, g, b);
-                delay(s * 1000);
+                delay(sec);
             }
 
             while(g != 255) {
                 g += 1;
                 analogColor(r, g, b);
-                delay(s * 1000);
+                delay(sec);
             }
 
             while(b != 0) {
                 b -= 1;
                 analogColor(r, g, b);
-                delay(s * 1000);
+                delay(sec);
             }
 
             while(r != 255) {
                 r += 1;
                 analogColor(r, g, b);
-                delay(s * 1000);
+                delay(sec);
             }
 
             while(g != 0) {
                 r -= 1;
                 analogColor(r, g, b);
-                delay(s * 1000);
+                delay(sec);
             }
         }
         /*
