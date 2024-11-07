@@ -6,7 +6,7 @@ constexpr unsigned int HALF_PERIOD{PERIOD / 2};
 
 
 using Builtin_LED = LED<13>;
-using RGBT = RGB_LED<12, 11, 9, 10>;
+using RGBT = RGB_LED<12, 11, 9, 10, Cathode_driven>;
 
 void setup() {
     Builtin_LED::init();
@@ -32,7 +32,7 @@ void loop() {
     Builtin_LED::on();
     RGBT::on();
 
-    RGBT::staticRGBlight(0.150);
+    RGBT::staticRGBlight();
     
     delay(150);
     Serial.print(":3 ");

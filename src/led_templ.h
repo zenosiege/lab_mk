@@ -9,21 +9,38 @@ class LED {
         static void off() { digitalWrite(pin, LOW); }
 }; // class
 
-template<int pin, int rpin, int gpin, int bpin>
+//наш ргб-диод катнодно-управляемый
+
+enum class Connection_type {anode_driven, cathode_driven};
+
+class Anode_driven {};
+class Cathode_driven {};
+
+template<int pin, int rpin, int gpin, int bpin, typename Conn_type>
 class RGB_LED {
     public:
 
-        RGB_LED() {};
+        RGB_LED() = delete; //ПАМЯТЬ МНЕ ОСВОБОДИ
 
+        
         static void init() { pinMode(pin, OUTPUT); pinMode(rpin, OUTPUT); pinMode(gpin, OUTPUT); pinMode(bpin, OUTPUT);}
 
-        static void on() { digitalWrite(pin, HIGH); }
+        //is_same не работает из-за своего компилятора и своего набора заголовочных файлов
 
-        static void redLightOn() { digitalWrite(rpin, LOW); digitalWrite(gpin, HIGH); digitalWrite(bpin, HIGH);}
+        static void on() { 
+            if constexpr (std::is_same<Anode_driven, Conn_type>)
+                {digitalWrite(pin, HIGH);}
+            if constexpr (std::is_same<Cathode_driven, Conn_type>)
+                {digitalWrite(pin, LOW);}   
+        }
 
-        static void off() { digitalWrite(pin, LOW); }
+        static void off() { 
+            if constexpr (std::is_same<Anode_driven, Conn_type>)
+                {digitalWrite(pin, LOW);}
+            if constexpr (std::is_same<Cathode_driven, Conn_type>)
+                {digitalWrite(pin, HIGH);}   
+        }
 
-        static void redLightOff() { digitalWrite(rpin, HIGH); digitalWrite(gpin, LOW); digitalWrite(bpin, LOW);}
 
         static void analogColor(unsigned int rVal, unsigned int gVal, unsigned int bVal) {
             analogWrite(rpin, rVal); 
@@ -59,49 +76,49 @@ class RGB_LED {
             }
         }
 
-        static void staticRGBlight (double s){
+        static void staticRGBlight (){
             unsigned int r = 255;
             unsigned int g = 0;
             unsigned int b = 0;
 
-            unsigned int sec = s * 1000;
+            int x = 1;
 
             analogColor(r, g, b);
 
             while(b != 255) {
                 b += 1;
                 analogColor(r, g, b);
-                delay(sec);
+                delay(x);
             }
 
             while(r != 0) {
                 r -= 1;
                 analogColor(r, g, b);
-                delay(sec);
+                delay(x);
             }
 
             while(g != 255) {
                 g += 1;
                 analogColor(r, g, b);
-                delay(sec);
+                delay(x);
             }
 
             while(b != 0) {
                 b -= 1;
                 analogColor(r, g, b);
-                delay(sec);
+                delay(x);
             }
 
             while(r != 255) {
                 r += 1;
                 analogColor(r, g, b);
-                delay(sec);
+                delay(x);
             }
 
             while(g != 0) {
-                r -= 1;
+                g -= 1;
                 analogColor(r, g, b);
-                delay(sec);
+                delay(x);
             }
         }
         /*
