@@ -26,6 +26,7 @@ class RGB_LED {
         static void init() { pinMode(pin, OUTPUT); pinMode(rpin, OUTPUT); pinMode(gpin, OUTPUT); pinMode(bpin, OUTPUT);}
 
         //is_same не работает из-за своего компилятора и своего набора заголовочных файлов
+        //можно через enum class сделать
 
         static void on() { 
             if constexpr (std::is_same<Anode_driven, Conn_type>)
