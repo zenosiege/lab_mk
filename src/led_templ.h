@@ -29,17 +29,17 @@ class RGB_LED {
         //можно через enum class сделать
 
         static void on() { 
-            if constexpr (std::is_same<Anode_driven, Conn_type>)
-                {digitalWrite(pin, HIGH);}
-            if constexpr (std::is_same<Cathode_driven, Conn_type>)
-                {digitalWrite(pin, LOW);}   
+            // if constexpr (Conn_type == Anode_driven)
+                digitalWrite(pin, HIGH);
+            //if constexpr (std::is_same<Cathode_driven, Conn_type>)
+            //    {digitalWrite(pin, LOW);}   
         }
 
         static void off() { 
-            if constexpr (std::is_same<Anode_driven, Conn_type>)
-                {digitalWrite(pin, LOW);}
-            if constexpr (std::is_same<Cathode_driven, Conn_type>)
-                {digitalWrite(pin, HIGH);}   
+            // if constexpr (std::is_same<Anode_driven, Conn_type>)
+                 digitalWrite(pin, LOW);
+            // if constexpr (std::is_same<Cathode_driven, Conn_type>)
+            //    {digitalWrite(pin, HIGH);}   
         }
 
 
