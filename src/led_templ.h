@@ -42,6 +42,17 @@ class RGB_LED {
             //    {digitalWrite(pin, HIGH);}   
         }
 
+        static void redLight() {
+            digitalWrite(rpin, LOW);
+            digitalWrite(gpin, HIGH);
+            digitalWrite(bpin, HIGH);
+        }
+
+        static void greenLight() {
+            digitalWrite(rpin, HIGH);
+            digitalWrite(gpin, LOW);
+            digitalWrite(bpin, HIGH);
+        }
 
         static void analogColor(unsigned int rVal, unsigned int gVal, unsigned int bVal) {
             analogWrite(rpin, rVal); 
@@ -122,35 +133,6 @@ class RGB_LED {
                 delay(x);
             }
         }
-        /*
-        static void clrRGBoff(char color) {
-            switch (color) {
-                case 'r':
-                    digitalWrite(rpin, HIGH); 
-                    digitalWrite(gpin, LOW); 
-                    digitalWrite(bpin, LOW);
-                    break;
-                case 'g':
-                    digitalWrite(rpin, LOW); 
-                    digitalWrite(gpin, HIGH); 
-                    digitalWrite(bpin, LOW);
-                    break;
-                case 'b':
-                    digitalWrite(rpin, LOW); 
-                    digitalWrite(gpin, LOW); 
-                    digitalWrite(bpin, HIGH);
-                    break;
-                case 'w':
-                    digitalWrite(rpin, HIGH); 
-                    digitalWrite(gpin, HIGH); 
-                    digitalWrite(bpin, HIGH);
-                    break;
-                default:
-                    Serial.print('che durak tak delat?');
-                    break;
-            }
-            
-        }*/
 }; // class
 
 void delay_s(unsigned int s){
