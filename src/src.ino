@@ -38,7 +38,7 @@ void loop() {
         // нельзя бесконечно фармить
         cheatDetect = 1;
 
-        Serial.println(howManyClicked);
+        Serial.println(String (howManyClicked) + " Arducoins");
         RGBT::redLight();
     }
     // исправить взаимодействие светодиода с фотодатчиком
