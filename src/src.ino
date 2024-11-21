@@ -8,6 +8,9 @@ constexpr unsigned int HALF_PERIOD{PERIOD / 2};
 int howManyClicked = 0; // количество кликов
 int cheatDetect = 0; // защита от "читерства", от бесконечно приложенной руки
 
+// одна секунда * сколько секунд надо
+int boostCount = 7 * 3; //отсчёт до активации буста
+
 using Builtin_LED = LED<13>;
 using RGBT = RGB_LED<12, 11, 9, 10, Cathode_driven>;
 using PhotoSensor1 = PhotoSensor<A0>;
@@ -30,6 +33,7 @@ void loop() {
     if (PhotoValue > 400) {
         cheatDetect = 0;
         RGBT::greenLight();
+        boostCount = 7 * 3;
     }
     else if ((PhotoValue < 400) && cheatDetect == 0) {
         // если перекрываешь сенсор рукой - плюс клик
@@ -40,6 +44,20 @@ void loop() {
 
         Serial.println(String (howManyClicked) + " Arducoins");
         RGBT::redLight();
+    }
+    else if ((PhotoValue < 400) && cheatDetect == 1) {
+        boostCount -= 1;
+        
+        if (boostCount % 7 == 0) {
+            // пофиксить секунды и обрубить бесконечный фарм на бусте
+            Serial.println(String(boostCount / 7) + "SECONDS UNTIL BOOST ACTIVATION");
+            if ((boostCount == 0) && howManyClicked > 15) {
+                RGBT::staticRGBlight();
+                howManyClicked += 200;
+                cheatDetect = 0;
+                Serial.println("CONGRATS, 200 ARDUINOCOINS HAVE BEEN ADDED TO YOUR ACCOUNT");
+            }
+        }
     }
     // исправить взаимодействие светодиода с фотодатчиком
     // (почему-то при уровне 255 на красном например горит пурпурный)
