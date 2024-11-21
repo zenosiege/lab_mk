@@ -20,20 +20,12 @@ void setup() {
 void loop() {
     Builtin_LED::on();
     RGBT::on();
-    int PhotoValue = PhotoSensor1::Read();
 
-    // RGBT::staticRGBlight();
-    Serial.println(PhotoValue);
-    if (PhotoValue > 400) {
-        RGBT::greenLight();
-    }
-    else {
-        RGBT::redLight();
-    }
-    // исправить взаимодействие светодиода с фотодатчиком
-    // (почему-то при уровне 255 на красном например горит пурпурный)
-    // RGBT::analogColor(255, int (PhotoSensor1::Read() / 3.2), 0)
-
-    delay(150);
+    RGBT::yellowLight();
+    
+    Builtin_LED::off();
+    RGBT::yellowLightOff();
+    RGBT::off();
+    
     
 }

@@ -53,6 +53,20 @@ class RGB_LED {
             digitalWrite(gpin, LOW);
             digitalWrite(bpin, HIGH);
         }
+        
+        static void yellowLight() {
+            //включается красный и зеленый СИД
+            digitalWrite(rpin, LOW);
+            digitalWrite(gpin, LOW);
+            digitalWrite(bpin, HIGH);
+        }
+
+        static void yellowLightOff() {
+            //выключается красный и зеленый СИД,надо для тестов
+            digitalWrite(rpin, HIGH);
+            digitalWrite(gpin, HIGH);
+            digitalWrite(bpin, HIGH);
+        }
 
         static void analogColor(unsigned int rVal, unsigned int gVal, unsigned int bVal) {
             analogWrite(rpin, rVal); 
